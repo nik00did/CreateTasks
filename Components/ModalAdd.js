@@ -13,10 +13,8 @@ export default class ModalAdd extends Component {
     ShowModalAdd = () => this.refs.modal.open();
     OK = () => {
         let arr = this.props.mainProp.state.tasks;
-        for(let i=0; i<arr.length;i++){
-            if(arr[i].id === this.state.id) return alert("The list already includes this name. Please, write another name!");
-            if(this.state.id === "") return alert("The name mustn't be empty. Please, write name!")
-        }
+        for(let i=0; i<arr.length;i++) if(arr[i].id === this.state.id) return alert("The list already includes this name. Please, write another name!");
+        if(this.state.id === "") return alert("The name mustn't be empty. Please, write name!");
         this.props.mainProp.Add(this.state.id);
         this.refs.modal.close();
         this.props.mainProp.Content(this.state.id,this.state.content);

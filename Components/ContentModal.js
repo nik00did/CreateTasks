@@ -84,7 +84,7 @@ export default class ContentModal extends Component {//not fixed
                 }}>
                     <View style={{
                         alignItems:'center',
-                        height:screen.height-23,
+                        height:screen.height,
                         width:screen.width,
                         borderWidth:5
                     }}>
@@ -109,7 +109,7 @@ export default class ContentModal extends Component {//not fixed
                                 marginTop:16.5,
                                 marginBottom:16.5,
                                 backgroundColor:'white',
-                                maxHeight:500,
+                                maxHeight:screen.height-170,
                                 borderColor:'#87CEFA',
                                 borderRadius:30,
                                 padding:20
@@ -124,7 +124,7 @@ export default class ContentModal extends Component {//not fixed
                             alignItems:'center',
                             marginBottom:16.5,
                             position:'absolute',
-                            marginTop:580
+                            marginTop:screen.height-100
                         }}>
                             <TouchableHighlight underlayColor='darkred' style={{
                                 width:100,
@@ -146,7 +146,7 @@ export default class ContentModal extends Component {//not fixed
                         justifyContent:'center',
                         backgroundColor:'lightcoral',
                         position: 'absolute',
-                        marginLeft:300,
+                        marginLeft:screen.width-65,
                         marginTop:10
                     }} onPress={this._close}>
                         <Image style={{

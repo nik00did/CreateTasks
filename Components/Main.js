@@ -91,7 +91,7 @@ export default class Main extends Component {
                         position: 'absolute',
                         width:60,
                         height:60,
-                        marginLeft:280,
+                        marginLeft:screen.width-80,
                         marginTop:10
                     }}>
                         <TouchableHighlight  style={{
