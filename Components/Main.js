@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AsyncStorage,View, Text, FlatList, TouchableHighlight, Image,ImageBackground, Dimensions} from 'react-native';
+import {AsyncStorage,View, Text, FlatList, TouchableHighlight, Image,ImageBackground, Dimensions , ScrollView} from 'react-native';
 import Task from '../Components/Task';
 import ContentModal from '../Components/ContentModal';
 import ModalAdd from '../Components/ModalAdd';
@@ -79,11 +79,14 @@ export default class Main extends Component {
                             fontSize:30,
                         }}>YOUR NOTES</Text>
                     </View>
-                    <View style={{alignItems:'center'}}>
-                        {(!this.state.isChanged && <FlatList refreshing={this.state.isRefreshing} onRefresh={() => this.onRefresh()} data={array} extraData={array}  renderItem={({item}) => {
-                            return (
-                                <Task data={item} id={item.id} content={item.content} contentMethod={this.Content}/>
-                            );
+                    <View style={{
+                        alignItems:'center',
+                        height:screen.height-95
+                    }}>
+                        {(!this.state.isChanged && <FlatList  refreshing={this.state.isRefreshing} onRefresh={() => this.onRefresh()} data={array} extraData={array}  renderItem={({item}) => {
+                                return (
+                                   <Task data={item} id={item.id} content={item.content} contentMethod={this.Content}/>
+                                   );
                         }} keyExtractor={(item) => item.id}>
                         </FlatList>)}
                     </View>

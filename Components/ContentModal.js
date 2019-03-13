@@ -4,7 +4,7 @@ import Modal from 'react-native-modalbox';
 
 let screen = Dimensions.get('window');
 
-export default class ContentModal extends Component {//not fixed
+export default class ContentModal extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -16,27 +16,25 @@ export default class ContentModal extends Component {//not fixed
         this.SendDataToMain = this.SendDataToMain.bind(this);
     }
     _close = () => {
-            Alert.alert(
-                "Save",
-                "Would you like to save your changes?",
-                [
-                    {text:'No',onPress: () => {
-                            this.refs.Modal.close();
-                            this.props.MainProp.setState({isChanged:false});
-                            alert("Cancel save!");
-                        }, style:'cancel'},
-                    {text:'Yes',onPress:() => {
-                            this.setState({getContent:this.refs.TextInputValue.props.value});
-                            //this.setState({editableInput:false});
-                            this.SendDataToMain(this.state.getName,this.state.getContent);
-                            this.refs.Modal.close();
-                            this.props.MainProp.setState({isChanged:false});
-                            alert("Task saved!");
-                        }},
-                    {cancelable:false}
-                ],
-            );
-
+        Alert.alert(
+            "Save",
+            "Would you like to save your changes?",
+            [
+                {text:'No',onPress: () => {
+                    this.refs.Modal.close();
+                    this.props.MainProp.setState({isChanged:false});
+                    alert("Cancel save!");
+                    }, style:'cancel'},
+                {text:'Yes',onPress:() => {
+                    this.setState({getContent:this.refs.TextInputValue.props.value});
+                    //this.setState({editableInput:false});
+                        this.SendDataToMain(this.state.getName,this.state.getContent);
+                        this.refs.Modal.close();
+                        this.props.MainProp.setState({isChanged:false});
+                        alert("Task saved!");
+                }},
+                {cancelable:false}],
+        );
     };
     SendDataToMain = (id,content) => this.props.MainProp.RecordTasks(id,content);
     ShowContentModal = (name,text) =>{
@@ -78,16 +76,16 @@ export default class ContentModal extends Component {//not fixed
                     width:'100%',
                     height:'100%'
                 }}>
-                <View style={{
-                    height:screen.height,
-                    width:screen.width,
-                }}>
                     <View style={{
-                        alignItems:'center',
                         height:screen.height,
                         width:screen.width,
-                        borderWidth:5
                     }}>
+                        <View style={{
+                            alignItems:'center',
+                            height:screen.height,
+                            width:screen.width,
+                            borderWidth:5
+                        }}>
                             <View style={{
                                 height:40,
                                 width:screen.width-100,
@@ -116,45 +114,45 @@ export default class ContentModal extends Component {//not fixed
                             }} editable = {this.state.editableInput} maxLength = {500} multiline = {true}  onChangeText={
                                 (getContent) => this.setState({getContent})
                             } value={this.state.getContent} placeholder="WRITE HERE" ref="TextInputValue"/>
-                        <View style={{
-                            flex:1,
-                            flexDirection:'row',
-                            justifyContent:'center',
-                            width:200,
-                            alignItems:'center',
-                            marginBottom:16.5,
-                            position:'absolute',
-                            marginTop:screen.height-100
-                        }}>
-                            <TouchableHighlight underlayColor='darkred' style={{
-                                width:100,
-                                height:50,
-                                alignItems:'center',
-                                borderRadius:20,
+                            <View style={{
+                                flex:1,
+                                flexDirection:'row',
                                 justifyContent:'center',
-                                backgroundColor:'#ff4040'
-                            }} onPress={this.delete}>
-                                <Text style={{color:'white', fontWeight: 'bold'}}>DELETE</Text>
-                            </TouchableHighlight>
+                                width:200,
+                                alignItems:'center',
+                                marginBottom:16.5,
+                                position:'absolute',
+                                marginTop:screen.height-100
+                            }}>
+                                <TouchableHighlight underlayColor='darkred' style={{
+                                    width:100,
+                                    height:50,
+                                    alignItems:'center',
+                                    borderRadius:20,
+                                    justifyContent:'center',
+                                    backgroundColor:'#ff4040'
+                                }} onPress={this.delete}>
+                                    <Text style={{color:'white', fontWeight: 'bold'}}>DELETE</Text>
+                                </TouchableHighlight>
+                            </View>
                         </View>
+                        <TouchableHighlight style={{
+                            width:40,
+                            height:40,
+                            borderRadius:30,
+                            alignItems:'center',
+                            justifyContent:'center',
+                            backgroundColor:'lightcoral',
+                            position: 'absolute',
+                            marginLeft:screen.width-65,
+                            marginTop:10
+                        }} onPress={this._close}>
+                            <Image style={{
+                                width:45,
+                                height:45
+                            }} source={require('../Image/close1.png')}/>
+                        </TouchableHighlight>
                     </View>
-                    <TouchableHighlight style={{
-                        width:40,
-                        height:40,
-                        borderRadius:30,
-                        alignItems:'center',
-                        justifyContent:'center',
-                        backgroundColor:'lightcoral',
-                        position: 'absolute',
-                        marginLeft:screen.width-65,
-                        marginTop:10
-                    }} onPress={this._close}>
-                        <Image style={{
-                            width:45,
-                            height:45
-                        }} source={require('../Image/close1.png')}/>
-                    </TouchableHighlight>
-                </View>
                 </ImageBackground>
             </Modal>
         );
